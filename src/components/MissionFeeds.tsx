@@ -9,7 +9,7 @@ import FeedItemComp from "./FeedItemComp";
 import FeedItems from "../types/FeedItems";
 
 function MissionFeeds() {
-  const [t, i18n] = useTranslation('common');
+  const [, i18n] = useTranslation('common');
   const [feeds, setFeeds] = useState<any[]>([]);
   const [hasMore, setHasMore] = useState(true);
   const {  data, fetchMore } = useQuery(LOAD_MISSION_FEEDS, {
@@ -66,7 +66,6 @@ function MissionFeeds() {
 
   if (feeds.length > 0) {
     let initialFeed = feeds[feeds.length-1];
-    console.log(initialFeed);
    let twitterTitle = document.querySelector('meta[name="twitter:title"]') as any;
    let twitterDescription = document.querySelector('meta[name="twitter:title"]') as any;
    let twitterImage = document.querySelector('meta[name="twitter:image"]') as any;
