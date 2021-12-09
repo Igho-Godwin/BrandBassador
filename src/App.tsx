@@ -1,12 +1,12 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import MissionFeeds from './components/MissionFeeds';
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import MissionFeeds from "./components/MissionFeeds";
 
 function App() {
   return (
     <React.Fragment>
-       <MissionFeeds/>
+      <MissionFeeds />
     </React.Fragment>
   );
 }

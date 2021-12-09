@@ -1,10 +1,16 @@
-import React from "react";
+import React, { FC } from "react";
+
 import { Image } from "react-bootstrap";
 import giftBoxIcon from "../images/giftBoxIcon.png";
-import { useTranslation } from "react-i18next";
-import FeedItem from "../types/FeedItem";
+import Feed from "../types/Feed";
 
-function FeedItemComp({ item  } : FeedItem) {
+import { useTranslation } from "react-i18next";
+
+type FeedItemSectionProps = {
+  item: Feed
+}
+
+const FeedItemSection: FC<FeedItemSectionProps> = ({ item }) => {
   const [t] = useTranslation("common");
 
   const formatDate = (date: string) => {
@@ -58,4 +64,4 @@ function FeedItemComp({ item  } : FeedItem) {
   );
 }
 
-export default FeedItemComp;
+export default FeedItemSection;

@@ -1,15 +1,13 @@
-type feed = {
-    title: string;
-    date: string;
-    video: {
-      alt: string;
-      src: string;
-    };
-    image: {
-      alt: string;
-      src: string;
-    };
-    cashReward: number;
-}[];
+type FileSrc = {
+  alt: string;
+  src: string;
+};
+type Feed = {
+  title: string;
+  date: string;
+  video: FileSrc;
+  image: FileSrc;
+  cashReward: number;
+};
 
-export default feed;
+export default Feed;
