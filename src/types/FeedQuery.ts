@@ -2,9 +2,9 @@ import Feed from "./Feed";
 
 type FeedQuery = {
   getFeed : {
-    item: Feed[];
+    items: Feed[];
     hasNextPage: boolean;
   };
 };
 
-export default Feed;
+export default FeedQuery;
