@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import Feed from "../types/Feed";
 
 export default function useLoadMetaTags(feeds: Feed[]) {
