@@ -20,8 +20,7 @@ const FeedItemSection: FC<FeedItemSectionProps> = ({ item }) => {
         year: "numeric",
         day: "numeric",
         month: "long",
-      })
-      .split(",");
+      });
     return newDate;
   };
 
