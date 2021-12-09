@@ -2,7 +2,7 @@
 A React application that displays data from Feeds.
 
 ## Preview Link
-https://starwars-explorer.netlify.app
+https://upbeat-beaver-801ea7.netlify.app/
 
 ## Tools
 - [React](https://reactjs.org/)
