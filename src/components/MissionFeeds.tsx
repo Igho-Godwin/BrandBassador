@@ -3,22 +3,10 @@ import { useQuery } from "@apollo/client";
 import { LOAD_MISSION_FEEDS } from "../graphQL/queries";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Button, Container, Row, Col, Image } from "react-bootstrap";
-import giftBoxIcon from "../images/giftBoxIcon.png";
 import LoadingIcon from "../images/loading.svg";
 import {useTranslation} from "react-i18next";
-type FeedItem = {
-  title: string;
-  date: string;
-  video: {
-    alt: string;
-    src: string;
-  };
-  image: {
-    alt: string;
-    src: string;
-  };
-  cashReward: number;
-};
+import FeedItemComp from "./FeedItemComp";
+import FeedItems from "../types/FeedItems";
 
 function MissionFeeds() {
   const [t, i18n] = useTranslation('common');
@@ -58,7 +46,7 @@ function MissionFeeds() {
       twitterImage.setAttribute("content", initialFeed.video.src);
      }
     }
-  });
+  }, [feeds]);
 
   
 
@@ -76,19 +64,27 @@ function MissionFeeds() {
     setFeeds([...initialFeeds, ...data2.getFeed.items]);
   };
 
-  const formatDate = (date: string) => {
-    const dateFormat = new Date(date);
-    const newDate = dateFormat
-      .toLocaleDateString("en-GB", {
-        year: "numeric",
-        day: "numeric",
-        month: "long",
-      })
-      .split(",");
-    return newDate;
-  };
+  if (feeds.length > 0) {
+    let initialFeed = feeds[feeds.length-1];
+    console.log(initialFeed);
+   let twitterTitle = document.querySelector('meta[name="twitter:title"]') as any;
+   let twitterDescription = document.querySelector('meta[name="twitter:title"]') as any;
+   let twitterImage = document.querySelector('meta[name="twitter:image"]') as any;
+   
+   //let x =   document.getElementsByTagName("twitter:card") as  any;
+   twitterTitle.setAttribute("content", initialFeed.title);
+   twitterDescription.setAttribute("content", initialFeed.title);
+   if(initialFeed.image.src){
+       twitterImage.setAttribute("content", initialFeed.image.src);
+   }
+   else{
+    twitterImage.setAttribute("content", initialFeed.video.src);
+   }
+  }
+
 
   return (
+    
     <Container fluid>
       <Row className="margin-top-20">
         <Col sm={12}>
@@ -115,47 +111,9 @@ function MissionFeeds() {
               }
             >
               {feeds &&
-                feeds.map((item: FeedItem) => {
+                feeds.map((item: FeedItems) => {
                   return (
-                    <div className="margin-bottom-20 ">
-                      {item.date && (
-                        <div className="margin-bottom-10 font-16">
-                          {formatDate(item.date)}
-                        </div>
-                      )}
-                      <div className="grey-background padding-bottom-10">
-                        {item.image && (
-                          <div>
-                            <Image
-                              src={item.image.src}
-                              alt={item.image.alt}
-                              height={228}
-                              width={343}
-                            />
-                          </div>
-                        )}
-
-                        {item.video && (
-                          <div className="embed-responsive embed-responsive-16by9">
-                            <iframe
-                              title={item.video.alt}
-                              className="embed-responsive-item"
-                              src={item.video.src}
-                              height={228}
-                              width={343}
-                            ></iframe>
-                          </div>
-                        )}
-                        <div className="margin-bottom-10">
-                          {item.title && item.title}
-                        </div>
-                        <div className="text-center margin-bottom-5">
-                          <button className="reward-Button">
-                            <Image src={giftBoxIcon} /> {t('reward.title')} $ {item.cashReward}
-                          </button>
-                        </div>
-                      </div>
-                    </div>
+                    <FeedItemComp item={item} />
                   );
                 })}
             </InfiniteScroll>
