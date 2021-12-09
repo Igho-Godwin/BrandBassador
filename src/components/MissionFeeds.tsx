@@ -58,7 +58,7 @@ function MissionFeeds() {
       twitterImage.setAttribute("content", initialFeed.video.src);
      }
     }
-  }, [feeds]);
+  });
 
   
 
