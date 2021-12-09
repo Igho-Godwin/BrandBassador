@@ -3,33 +3,12 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {
-  ApolloClient,
-  InMemoryCache,
   ApolloProvider,
 } from "@apollo/client";
 import {I18nextProvider} from "react-i18next";
-import i18next from "i18next";
+import i18next from "./translation";
+import client from "./apollo-client";
 
-import common_de from "./translations/es/common.json";
-import common_en from "./translations/en/common.json";
-
-i18next.init({
-    interpolation: { escapeValue: false },  // React already does escaping
-    lng: 'en',                              // language to use
-    resources: {
-        en: {
-            common: common_en               // 'common' is our custom namespace
-        },
-        es: {
-            common: common_de
-        },
-    },
-});
-
-const client = new ApolloClient({
-  uri: "https://assignment-fa.brandbassador.com/graphql",
-  cache: new InMemoryCache(),
-});
 
 ReactDOM.render(
   <React.StrictMode>

@@ -5,9 +5,9 @@ import MissionFeeds from './components/MissionFeeds';
 
 function App() {
   return (
-    <div className="App">
+    <React.Fragment>
        <MissionFeeds/>
-    </div>
+    </React.Fragment>
   );
 }
 

@@ -20,7 +20,7 @@ function FeedItemComp({ item  } : FeedItem) {
   };
 
   return (
-    <div className="margin-bottom-20 ">
+    <div className="margin-bottom-20 " data-testid="feed-item-container">
       {item.date && (
         <div className="margin-bottom-10 font-16">{formatDate(item.date)}</div>
       )}
