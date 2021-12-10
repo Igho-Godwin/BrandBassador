@@ -45,7 +45,8 @@ function MissionFeeds() {
       },
     });
     setHasMore(feedData.getFeed.hasNextPage);
-    setFeeds([...initialFeeds, ...feedData.getFeed.items]);
+    const newFeed = [...initialFeeds, ...feedData.getFeed.items];
+    setFeeds(newFeed);
   };
 
   return (
