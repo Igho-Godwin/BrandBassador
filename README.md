@@ -1,4 +1,4 @@
-# Feeds Explorer
+# BrandBassador Feed Explorer
 A React application that displays data from Feeds.
 
 ## Preview Link
