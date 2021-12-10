@@ -7,20 +7,19 @@ import Feed from "../types/Feed";
 import { useTranslation } from "react-i18next";
 
 type FeedItemSectionProps = {
-  item: Feed
-}
+  item: Feed;
+};
 
 const FeedItemSection: FC<FeedItemSectionProps> = ({ item }) => {
   const [t] = useTranslation("common");
 
   const formatDate = (date: string) => {
     const dateFormat = new Date(date);
-    const newDate = dateFormat
-      .toLocaleDateString("en-GB", {
-        year: "numeric",
-        day: "numeric",
-        month: "long",
-      });
+    const newDate = dateFormat.toLocaleDateString("en-GB", {
+      year: "numeric",
+      day: "numeric",
+      month: "long",
+    });
     return newDate;
   };
 
@@ -55,12 +54,12 @@ const FeedItemSection: FC<FeedItemSectionProps> = ({ item }) => {
         <div className="margin-bottom-10">{item.title && item.title}</div>
         <div className="text-center margin-bottom-5">
           <button className="reward-Button">
-            <Image src={giftBoxIcon} /> {t("reward.title")} $ {item.cashReward}
+            <Image src={giftBoxIcon} alt="rewardIcon" /> {t("reward.title")} $ {item.cashReward}
           </button>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default FeedItemSection;
