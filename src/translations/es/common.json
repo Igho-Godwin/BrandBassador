@@ -2,4 +2,8 @@
   "reward": {
     "title": "Recompensa"
   }
+  ,
+  "cash": {
+    "title": "Efectivo"
+  }
 }

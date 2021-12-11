@@ -1,5 +1,8 @@
 {
   "reward": {
     "title": "Reward"
+  },
+  "cash": {
+    "title": "Cash"
   }
 }

@@ -10,6 +10,7 @@ type Feed = {
   video: FileSrc;
   image: FileSrc;
   cashReward: number;
+  __typename: string
 };
 
 export default Feed;

@@ -29,6 +29,7 @@ function MissionFeeds() {
   useEffect(() => {
     if (data) {
       document.title = "BrandBassador Feed Explorer";
+      console.log(data.getFeed.items);
       setFeeds(data.getFeed.items);
       setHasMore(data.getFeed.hasNextPage);
     }

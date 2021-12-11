@@ -57,3 +57,21 @@
 .padding-bottom-10 {
   padding-bottom: 10px;
 }
+
+.position-relative{
+  position:relative;
+}
+
+.cashHeader{
+  position:absolute;
+  top: 5px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  font-size: 12px;
+  padding:2px;
+}
+
+.vertical-align-middle{
+   vertical-align: middle;
+}
