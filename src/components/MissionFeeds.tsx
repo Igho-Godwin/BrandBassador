@@ -16,6 +16,7 @@ function MissionFeeds() {
   const [, i18n] = useTranslation("common");
   const [feeds, setFeeds] = useState<Feed[]>([]);
   const [hasMore, setHasMore] = useState(true);
+  const [language, setLanguage] = useState("en-GB");
   const { data, fetchMore } = useQuery<FeedQuery>(LOAD_MISSION_FEEDS, {
     variables: {
       input: {
@@ -27,13 +28,25 @@ function MissionFeeds() {
 
   useEffect(() => {
     if (data) {
-      document.title = "BrandBassador Feed Explorer"
+      document.title = "BrandBassador Feed Explorer";
       setFeeds(data.getFeed.items);
       setHasMore(data.getFeed.hasNextPage);
     }
   }, [data]);
 
   useLoadMetaTags(feeds);
+
+  const changeLanguage = (lang: string) => {
+    let langData = "";
+    if (lang === "en") {
+      i18n.changeLanguage("en");
+      langData = "en-GB";
+    } else {
+      i18n.changeLanguage("es");
+      langData = "es";
+    }
+    setLanguage(langData);
+  };
 
   const fetchMoreFeedData = async () => {
     let initialFeeds = [...feeds];
@@ -49,7 +62,7 @@ function MissionFeeds() {
     const newFeed = [...initialFeeds, ...feedData.getFeed.items];
     setFeeds(newFeed);
   };
-
+  let key = 0;
   return (
     <Container data-testid="mission-feeds-container" fluid>
       <Row className="margin-top-20">
@@ -57,13 +70,13 @@ function MissionFeeds() {
           <div>
             <Button
               className="btn-language"
-              onClick={() => i18n.changeLanguage("en")}
+              onClick={() => changeLanguage("en")}
             >
               English
             </Button>
             <Button
               className="margin-left-20 btn-language"
-              onClick={() => i18n.changeLanguage("es")}
+              onClick={() => changeLanguage("es")}
             >
               Spanish
             </Button>
@@ -92,7 +105,14 @@ function MissionFeeds() {
             >
               {feeds &&
                 feeds.map((item: Feed) => {
-                  return <FeedItemSection item={item} />;
+                  key++;
+                  return (
+                    <FeedItemSection
+                      key={key}
+                      language={language}
+                      item={item}
+                    />
+                  );
                 })}
             </InfiniteScroll>
           </div>

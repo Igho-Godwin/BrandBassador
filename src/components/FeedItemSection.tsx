@@ -8,18 +8,45 @@ import { useTranslation } from "react-i18next";
 
 type FeedItemSectionProps = {
   item: Feed;
+  language: string;
 };
 
-const FeedItemSection: FC<FeedItemSectionProps> = ({ item }) => {
+const FeedItemSection: FC<FeedItemSectionProps> = ({ item, language }) => {
   const [t] = useTranslation("common");
 
   const formatDate = (date: string) => {
     const dateFormat = new Date(date);
-    const newDate = dateFormat.toLocaleDateString("en-GB", {
+
+    if (language !== "en-GB") {
+      var months = [
+        "Enero",
+        "Febrero",
+        "Marzo",
+        "Abril",
+        "Mayo",
+        "Junio",
+        "Julio",
+        "Agosto",
+        "Septiembre",
+        "Octubre",
+        "Noviembre",
+        "Diciembre",
+      ];
+      return (
+        dateFormat.getDate() +
+        " " +
+        months[dateFormat.getMonth()] +
+        " " +
+        dateFormat.getFullYear()
+      );
+    }
+
+    const newDate = dateFormat.toLocaleString(language, {
       year: "numeric",
       day: "numeric",
       month: "long",
     });
+
     return newDate;
   };
 
@@ -54,7 +81,8 @@ const FeedItemSection: FC<FeedItemSectionProps> = ({ item }) => {
         <div className="margin-bottom-10">{item.title && item.title}</div>
         <div className="text-center margin-bottom-5">
           <button className="reward-Button">
-            <Image src={giftBoxIcon} alt="rewardIcon" /> {t("reward.title")} $ {item.cashReward}
+            <Image src={giftBoxIcon} alt="rewardIcon" /> {t("reward.title")} ${" "}
+            {item.cashReward}
           </button>
         </div>
       </div>
