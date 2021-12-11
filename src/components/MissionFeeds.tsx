@@ -71,12 +71,14 @@ function MissionFeeds() {
             <Button
               className="btn-language"
               onClick={() => changeLanguage("en")}
+              as={"a"}
             >
               English
             </Button>
             <Button
               className="margin-left-20 btn-language"
               onClick={() => changeLanguage("es")}
+              as={"a"}
             >
               Spanish
             </Button>
